@@ -23,8 +23,16 @@ In this challenge, you are to build the Smurfs village once again, only this tim
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
 - [ ] In your own words, describe `actions`, `reducers` and the `store` and their role in Redux. What does each piece do? Why is the store known as a 'single source of truth' in a redux application?
+
+- Actions are simply a JS object that contain a type and possibly a payload, dispatched by an action creator. The type is a string thats all caps by convention and stored as a variable set to that string. The reducers take in an action and update the state according to the case. The reducers are combined using combineReducers and exported as the rootReducer by convention and this is passed into the store and holds all of our applications state. It's the single source of truth because the entire state tree is passed down to each component then later we pick the pieces of state we want but it all comes from the same state tree.
+
 - [ ] What is the difference between Application state and Component state? When would be a good time to use one over the other?
+
+- Application state keeps all of the state in a central location, like the 'single source of truth' for the entire app. Component state first requires that you write a class component to allow it to carry state, and the state isn't shared unless the props are passed down through other components. The dynamic rendering would be based off of several different versions of state and may be hard to manage your operation as it grows. Component state is good if you know that your app isn't going to get much more complex.
+
 - [ ] Describe `redux-thunk`, what does it allow us to do? How does it change our `action-creators`?
+
+- A thunk is a function that is returned by another function. applyMiddleware lets us pass in thunk as an argument in order to run other operations asynchronously (at the same time). applyMiddleware gets passed into our store after the rootReducer. The second argument is "dispatch" which lets us dispatch actions throughout our function.
 
 ## Project Set Up
 
@@ -80,9 +88,9 @@ return dispatch => {
 ```js
 [
   {
-    name: 'Brainey',
+    name: "Brainey",
     age: 200,
-    height: '5cm',
+    height: "5cm",
     id: 0
   }
 ];
@@ -113,15 +121,15 @@ Example of object created in Smurf DB:
 ```js
 [
   {
-    name: 'Brainey',
+    name: "Brainey",
     age: 200,
-    height: '5cm',
+    height: "5cm",
     id: 0
   },
   {
-    name: 'Sleepy',
+    name: "Sleepy",
     age: 200,
-    height: '5cm',
+    height: "5cm",
     id: 1
   }
 ];
@@ -173,9 +181,9 @@ Example:
 ```js
 output: [
   {
-    name: 'Sleepy',
+    name: "Sleepy",
     age: 200,
-    height: '5cm',
+    height: "5cm",
     id: 1
   }
 ];
