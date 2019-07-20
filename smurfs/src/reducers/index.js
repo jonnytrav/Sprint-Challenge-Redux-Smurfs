@@ -1,14 +1,15 @@
 import {
   GET_SMURFS_START,
   GET_SMURFS_SUCCESS,
-  GET_SMURFS_FAIL
+  GET_SMURFS_FAIL,
+  ADD_SMURF_START
 } from "../actions";
 
 const initialState = {
-  smurfs: [{ name: "Brainey", age: 200, height: "5cm" }],
+  smurfs: [],
   fetchingSmurfs: false,
   addingSmurf: false,
-  error: null
+  error: ""
 };
 /*
  Your initial/default state for this project could *Although does not have to* look a lot like this
@@ -26,7 +27,20 @@ export const reducer = (state = initialState, action) => {
     case GET_SMURFS_START:
       return {
         ...state,
-        fetchingSmurfs: true
+        fetchingSmurfs: true,
+        error: ""
+      };
+    case GET_SMURFS_SUCCESS:
+      return {
+        ...state,
+        smurfs: action.payload,
+        fetchingSmurfs: false
+      };
+    case ADD_SMURF_START:
+      return {
+        ...state,
+        addingSmurf: true,
+        error: ""
       };
     default:
       return state;
